@@ -1,0 +1,73 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "ec2:*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:Region": [
+                        "eu-west-1"
+                    ]
+                }
+            }
+        },
+        {
+            "Action": "s3:*",
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": "vpc:*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:Region": [
+                        "eu-west-1"
+                    ]
+                }
+            }
+        },
+        {
+            "Action": "cloudformation:*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:Region": [
+                        "eu-west-1"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "OnlyAllowCertainInstanceTypesToBeCreated",
+            "Effect": "Deny",
+            "Action": [
+                "ec2:RunInstances"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "ec2:InstanceType": [
+                        "p2.16xlarge",
+                        "x1.32xlarge",
+                        "f1.16xlarge",
+                        "p2.8xlarge",
+                        "i2.8xlarge",
+                        "x1.16xlarge",
+                        "d2.8xlarge",
+                        "i3.16xlarge",
+                        "hs1.8xlarge",
+                        "g3.16xlarge",
+                        "r4.16xlarge",
+                        "cr1.8xlarge",
+                        "f1.2xlarge"
+                    ]
+                }
+            }
+        }
+    ]
+}
